@@ -1,35 +1,89 @@
-document.getElementById("sevari-form")?.addEventListener("submit", async function(e) {
-  e.preventDefault();
+// =============================
+// VEYLITH SYSTEMS — FORM ENGINE
+// =============================
 
-  const status = document.getElementById("form-status");
-  status.innerText = "Sending...";
+// CONFIG — REPLACE WHEN N8N IS READY
+const ENDPOINTS = {
+  sevari: "",     // e.g. https://yourdomain.com/webhook/sevari
+  serenity: "",   // e.g. https://yourdomain.com/webhook/serenity
+  general: "mailto:veylithsystems@gmail.com"
+};
 
-  const formData = new FormData(this);
-  const data = Object.fromEntries(formData.entries());
+// =============================
+// CORE HANDLER
+// =============================
+async function handleFormSubmit(formId, type) {
+  const form = document.getElementById(formId);
+  if (!form) return;
 
-  try {
-    // ===== SWITCH THIS LATER TO N8N =====
-    const webhookUrl = ""; // leave empty for now
+  const status = form.querySelector("[id$='status']");
 
-    if (webhookUrl) {
-      await fetch(webhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          source: "sevari_web",
-          ...data
-        })
-      });
-    } else {
-      // fallback: email
-      window.location.href =
-        `mailto:veylithsystems@gmail.com?subject=Sevari Enquiry&body=${encodeURIComponent(
-          data.name + " (" + data.email + ")\n\n" + data.message
-        )}`;
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (status) status.innerText = "Processing...";
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    const payload = {
+      system: type,
+      timestamp: new Date().toISOString(),
+      source: "veylith_web",
+      ...data
+    };
+
+    try {
+      const endpoint = ENDPOINTS[type];
+
+      // =============================
+      // IF WEBHOOK EXISTS → SEND TO N8N
+      // =============================
+      if (endpoint && endpoint.startsWith("http")) {
+
+        await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (status) status.innerText = "Submitted.";
+
+      } else {
+
+        // =============================
+        // FALLBACK → EMAIL
+        // =============================
+        const subject = `${type.toUpperCase()} Enquiry`;
+
+        const body = `
+Name: ${data.name || ""}
+Email: ${data.email || ""}
+
+Message:
+${data.message || ""}
+        `;
+
+        window.location.href =
+          `mailto:veylithsystems@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        if (status) status.innerText = "Opening email client...";
+      }
+
+    } catch (err) {
+      if (status) status.innerText = "Error. Try again.";
+      console.error("Submission error:", err);
     }
+  });
+}
 
-    status.innerText = "Sent.";
-  } catch (err) {
-    status.innerText = "Error. Try again.";
-  }
+// =============================
+// INITIALISE
+// =============================
+document.addEventListener("DOMContentLoaded", () => {
+  handleFormSubmit("sevari-form", "sevari");
+  handleFormSubmit("serenity-form", "serenity");
+  handleFormSubmit("general-form", "general");
 });
