@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Veylith Systems — Sevari</title>
-  <meta name="description" content="Sevari runs the operational work behind a business or project using autonomous systems with human-controlled execution.">
+  <meta name="description" content="Sevari runs the operational work behind a business or project using structured autonomous systems with controlled execution.">
   <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
 </head>
 <body>
 
@@ -22,7 +23,7 @@
   </div>
 
   <div class="nav-cta">
-    <a href="sevari.html" class="btn btn-primary btn-sm">Get Started</a>
+    <a href="#start" class="btn btn-primary btn-sm">Get Started</a>
   </div>
 </nav>
 
@@ -40,11 +41,11 @@
     <p class="hero-sub">
       Sevari executes the operational work behind a business or individual project —
       building, marketing, selling, supporting, and maintaining — using a structured
-      system of specialist agents and controlled execution.
+      system of specialist agents, deterministic logic, and controlled execution.
     </p>
 
     <div class="hero-cta">
-      <a href="sevari.html" class="btn btn-primary">Start with Sevari →</a>
+      <a href="#start" class="btn btn-primary">Start with Sevari →</a>
     </div>
 
   </div>
@@ -54,11 +55,11 @@
 <section class="section">
   <div class="container">
 
-    <h2 class="display-2">What this is</h2>
+    <h2 class="display-2">What Sevari is</h2>
 
-    <p class="text-dim" style="max-width:700px;margin-bottom:30px">
-      Sevari is not a tool or assistant. It is a system that executes the work behind
-      a business or project. You define what needs to be done. The system carries it out.
+    <p class="text-dim" style="max-width:700px">
+      Sevari is an autonomous operations engine. It does not assist with tasks —
+      it executes them. You define the direction. The system carries out the work.
     </p>
 
   </div>
@@ -71,9 +72,146 @@
     <h2 class="display-2">What it runs</h2>
 
     <div class="grid-3">
-      <div class="card"><h3>Build</h3><p class="text-dim">Code and deployment</p></div>
+      <div class="card"><h3>Build</h3><p class="text-dim">Code, systems, deployment</p></div>
       <div class="card"><h3>Market</h3><p class="text-dim">Content and campaigns</p></div>
       <div class="card"><h3>Sell</h3><p class="text-dim">Outreach and pipeline</p></div>
       <div class="card"><h3>Support</h3><p class="text-dim">Customer handling</p></div>
       <div class="card"><h3>Finance</h3><p class="text-dim">Invoicing and tracking</p></div>
-      <div class="card"><h3>Operate</h3><p class="text-dim">Monitoring and reporting</p></
+      <div class="card"><h3>Operate</h3><p class="text-dim">Monitoring and reporting</p></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SYSTEM STRUCTURE -->
+<section class="section">
+  <div class="container">
+
+    <h2 class="display-2">How it operates</h2>
+
+    <div class="card" style="margin-bottom:20px">
+      Intake → Guardian → Routing → Specialist Agent → Failsafe → Approval → Audit → Learning
+    </div>
+
+    <p class="text-dim" style="max-width:700px">
+      Every task passes through a structured pipeline. Nothing executes without validation.
+      Nothing fails without fallback. Every action is logged.
+    </p>
+
+  </div>
+</section>
+
+<!-- CONTROL -->
+<section class="section section-alt">
+  <div class="container">
+
+    <h2 class="display-2">You remain in control</h2>
+
+    <div class="grid-3">
+      <div class="card"><h3>Auto</h3><p class="text-dim">Low-risk tasks execute immediately</p></div>
+      <div class="card"><h3>Review</h3><p class="text-dim">Outputs queued for approval</p></div>
+      <div class="card"><h3>Require</h3><p class="text-dim">Critical actions need approval</p></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="section">
+  <div class="container">
+
+    <h2 class="display-2">Built for</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Individuals</h3>
+        <p class="text-dim">Run a project or business without building a team.</p>
+      </div>
+
+      <div class="card">
+        <h3>Businesses</h3>
+        <p class="text-dim">Replace operational workload with structured systems.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ENTRY POINT -->
+<section class="section section-alt" id="start">
+  <div class="container">
+
+    <h2 class="display-2">Start with Sevari</h2>
+
+    <form id="sevari-form" class="card" style="max-width:600px">
+
+      <div style="margin-bottom:12px">
+        <label>Name</label><br>
+        <input type="text" name="name" required style="width:100%">
+      </div>
+
+      <div style="margin-bottom:12px">
+        <label>Email</label><br>
+        <input type="email" name="email" required style="width:100%">
+      </div>
+
+      <div style="margin-bottom:12px">
+        <label>What do you want Sevari to run?</label><br>
+        <textarea name="message" required style="width:100%"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit →</button>
+
+      <p id="form-status" class="text-dim" style="margin-top:10px"></p>
+
+    </form>
+
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section class="section">
+  <div class="container">
+    <p class="text-dim" style="font-size:0.8rem;max-width:700px">
+      Sevari is an autonomous system under active development. Outputs may include AI-generated content
+      and automated execution. Users remain responsible for all actions taken using the system.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+        <strong>Veylith Systems</strong>
+        <p class="text-dim">Autonomous systems for business operations.</p>
+      </div>
+
+      <div>
+        <h4>Products</h4>
+        <a href="index.html">Sevari</a>
+        <a href="serenity.html">Serenity</a>
+      </div>
+
+      <div>
+        <h4>Legal</h4>
+        <a href="legal.html">Legal</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="ai-disclaimer.html">AI Disclosure</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Veylith Systems
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
